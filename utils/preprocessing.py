@@ -1,5 +1,7 @@
 import pandas as pd
 from pathlib import Path
+from surprise import Dataset, Reader
+from surprise.model_selection import train_test_split
 
 # Rating data loading function for .csv files
 def load_rating_data_csv(file_path: Path) -> pd.DataFrame:
@@ -198,3 +200,34 @@ def merge_datasets(ratings_df: pd.DataFrame, movies_df: pd.DataFrame) -> pd.Data
 
     merged_df = pd.merge(ratings_df, movies_df, on='movieId', how='inner')
     return merged_df
+
+# Surprise library dataset loading function
+def load_surprise_dataset(df: pd.DataFrame) -> Dataset | None:
+    """
+    Loads the rating data into a Surprise Dataset object for recommendation algorithms.
+    :param df: DataFrame containing the rating data.
+    :return: Surprise Dataset object.
+    """
+    try:
+        reader = Reader(rating_scale=(df['rating'].min(), df['rating'].max()))
+        data = Dataset.load_from_df(df[['userId', 'movieId', 'rating']], reader)
+        return data
+    except Exception as e:
+        print(f"An error occurred while loading the Surprise dataset: {e}")
+        return None
+
+# Train-test split function for Surprise dataset
+def split_surprise_dataset(data: Dataset, test_size: float = 0.2, random_state: int = 42) -> tuple[Dataset, Dataset] | tuple[None, None]:
+    """
+    Splits the Surprise Dataset into training and testing sets.
+    :param data: Surprise Dataset object.
+    :param test_size: Proportion of the dataset to include in the test split.
+    :param random_state: Random seed for reproducibility.
+    :return: trainset, testset
+    """
+    try:
+        trainset, testset = train_test_split(data, test_size=test_size, random_state=random_state)
+        return trainset, testset
+    except Exception as e:
+        print(f"An error occurred while splitting the Surprise dataset: {e}")
+        return None, None
