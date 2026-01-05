@@ -3,7 +3,7 @@ from surprise import accuracy, SVD, Dataset, KNNBaseline
 
 
 # Function to compute RMSE, MAE and time taken for predictions on SVD model
-def evaluate_model(svd_model: SVD | KNNBaseline , testset: Dataset) -> dict:
+def evaluate_model(svd_model: SVD | KNNBaseline , testset: list) -> dict:
     """
     Evaluates the given SVD or KNNBaseline model on the provided test set.
     Computes RMSE and MAE, and measures the time taken for predictions.
@@ -27,9 +27,9 @@ def evaluate_model(svd_model: SVD | KNNBaseline , testset: Dataset) -> dict:
 
 
 # Wrapper function to evaluate 2 SVD models and a KNNBaseline model at the same time
-def overall_evaluation(svd_32m_model: SVD, testset_svd_32m: Dataset,
-                       svd_1m_model: SVD, testset_svd1_m: Dataset,
-                       knn_model: KNNBaseline, testset_KNN: Dataset) -> dict:
+def overall_evaluation(svd_32m_model: SVD, testset_svd_32m: list,
+                       svd_1m_model: SVD, testset_svd1_m: list,
+                       knn_model: KNNBaseline, testset_KNN: list) -> dict:
     """
     Evaluates two SVD models and one KNNBaseline model on their respective test sets.
     :param svd_32m_model: First trained SVD model

@@ -1,6 +1,6 @@
 import pandas as pd
 from pathlib import Path
-from surprise import Dataset, Reader
+from surprise import Dataset, Reader, Trainset
 from surprise.model_selection import train_test_split
 
 # Rating data loading function for .csv files
@@ -217,7 +217,7 @@ def load_surprise_dataset(df: pd.DataFrame) -> Dataset | None:
         return None
 
 # Train-test split function for Surprise dataset
-def split_surprise_dataset(data: Dataset, test_size: float = 0.2, random_state: int = 42) -> tuple[Dataset, Dataset] | tuple[None, None]:
+def split_surprise_dataset(data: Dataset, test_size: float = 0.2, random_state: int = 42) -> tuple[Trainset, list] | tuple[None, None]:
     """
     Splits the Surprise Dataset into training and testing sets.
     :param data: Surprise Dataset object.
