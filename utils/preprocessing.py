@@ -11,7 +11,7 @@ def load_rating_data_csv(file_path: Path) -> pd.DataFrame:
     :return: DataFrame containing the rating data.
     """
     try:
-        data = pd.read_csv(file_path, encoding='utf-8')
+        data = pd.read_csv(file_path, encoding='ISO-8859-1')
         return data
     except FileNotFoundError:
         print(f"Error: The file at {file_path} was not found.")
@@ -36,7 +36,7 @@ def load_rating_data_dat(file_path: Path) -> pd.DataFrame:
     try:
         # The MovieLens 1M dataset uses '::' as a delimiter and has no header
         # Defined column names based on the other dataset present in the project (32M dataset) (userId, movieId, rating, timestamp)
-        data = pd.read_csv(file_path, delimiter="::", header = None, names=['userId', 'movieId', 'rating', 'timestamp'])
+        data = pd.read_csv(file_path, delimiter="::", header = None, names=['userId', 'movieId', 'rating', 'timestamp'], engine='python', encoding='ISO-8859-1')
         return data
     except FileNotFoundError:
         print(f"Error: The file at {file_path} was not found.")
@@ -117,10 +117,7 @@ def load_movies_data_csv(file_path: Path,) -> pd.DataFrame:
     :return: df: DataFrame containing the movies data.
     """
     try:
-        data = pd.read_csv(file_path, encoding='utf-8')
-        # Process movie genres if the 'genres' column exists
-        if 'genres' in data.columns:
-            data = process_movie_genres(data, tag_column='genres')
+        data = pd.read_csv(file_path, encoding='ISO-8859-1')
         return data
     except FileNotFoundError:
         print(f"Error: The file at {file_path} was not found.")
@@ -145,9 +142,7 @@ def load_movies_data_dat(file_path: Path,) -> pd.DataFrame:
     try:
         # The MovieLens 1M dataset uses '::' as a delimiter and has no header
         # Defined column names based on the other dataset present in the project (32M dataset) (movieId, title, genres)
-        data = pd.read_csv(file_path, delimiter="::", header=None, names=['movieId', 'title', 'genres'])
-        # Process movie genres
-        data = process_movie_genres(data, tag_column='genres')
+        data = pd.read_csv(file_path, delimiter="::", header=None, names=['movieId', 'title', 'genres'], engine='python', encoding='ISO-8859-1')
         return data
     except FileNotFoundError:
         print(f"Error: The file at {file_path} was not found.")
@@ -184,6 +179,7 @@ def preprocess_movies_data(file_path: Path, file_type: str) -> pd.DataFrame:
         return data
 
     cleaned_data = clean_dataset(data)
+    cleaned_data = process_movie_genres(cleaned_data, tag_column='genres')
     return cleaned_data
 
 # General function to merge ratings and movies data
