@@ -6,3 +6,4 @@ pandas==2.3.3
 pathlib==1.0.1
 matplotlib==3.10.8
 seaborn==0.13.2
+pickle-warehouse==0.1.1
