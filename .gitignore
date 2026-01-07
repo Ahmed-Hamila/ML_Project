@@ -4,3 +4,4 @@ __pycache__
 .idea
 data/prepared-1m
 data/prepared-100k
+models
