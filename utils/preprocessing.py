@@ -177,20 +177,20 @@ def load_movies_data(file_path: Path, file_type: str) -> pd.DataFrame:
         return data
     return data
 
-# Rating data pre-processing wrapper function
-def preprocess_rating_data(df: pd.DataFrame) -> pd.DataFrame:
+# Rating data formatting wrapper function
+def format_rating_data(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Preprocesses the rating data by cleaning the dataset.
+    format the rating data by cleaning the dataset.
     :param df: rating DataFrame to preprocess.
     :return: df: Preprocessed rating DataFrame.
     """
     df = clean_dataset(df)
     return df
 
-# Movies data pre-processing wrapper function
-def preprocess_movies_data(df: pd.DataFrame) -> pd.DataFrame:
+# Movies data formatting wrapper function
+def format_movies_data(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Preprocesses the movies data by cleaning the dataset and processing movie genres.
+    formats the movies data by cleaning the dataset and processing movie genres.
     :param df: movies DataFrame to preprocess.
     :return: df: Preprocessed movies DataFrame.
     """
