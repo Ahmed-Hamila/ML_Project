@@ -69,13 +69,13 @@ def clean_dataset(df: pd.DataFrame) -> pd.DataFrame:
         df = df.drop(columns=['timestamp'])
     return df
 
-# Rating data preprocessing function
-def preprocess_rating_data(file_path: Path, file_type: str) -> pd.DataFrame:
+# Rating data loading wrapper function
+def load_rating_data(file_path: Path, file_type: str) -> pd.DataFrame:
     """
-    Wrapper function to load and preprocess rating data and return the ready-to-use DataFrame.
+    Wrapper function to load rating data and return it in a DataFrame.
     :param file_path: pathlib.Path to the file containing rating data. (using pathlib.path for universal compatibility between OS)
     :param file_type: Type of the file for appropriate handling ('csv' or 'dat').
-    :return: df: Preprocessed DataFrame containing the rating ready-to-use data.
+    :return: df: loaded DataFrame containing the rating data.
     """
     if file_type == 'csv':
         data = load_rating_data_csv(file_path)
@@ -88,9 +88,7 @@ def preprocess_rating_data(file_path: Path, file_type: str) -> pd.DataFrame:
     if data.empty:
         print("No data to preprocess.")
         return data
-
-    cleaned_data = clean_dataset(data)
-    return cleaned_data
+    return data
 
 # Movie genres processing function
 def process_movie_genres(df : pd.DataFrame, tag_column: str = 'genres') -> pd.DataFrame:
@@ -158,13 +156,13 @@ def load_movies_data_dat(file_path: Path,) -> pd.DataFrame:
         return pd.DataFrame()
 
 
-# Movies data preprocessing function
-def preprocess_movies_data(file_path: Path, file_type: str) -> pd.DataFrame:
+# Movies data loading wrapper function
+def load_movies_data(file_path: Path, file_type: str) -> pd.DataFrame:
     """
-    Wrapper function to load and preprocess movies data and return the ready-to-use DataFrame.
+    Wrapper function to load movies data and return it in a DataFrame.
     :param file_path: pathlib.Path to the file containing movies data. (using pathlib.path for universal compatibility between OS)
     :param file_type: Type of the file for appropriate handling ('csv' or 'dat').
-    :return: df: Preprocessed DataFrame containing the movies ready-to-use data.
+    :return: df: Preprocessed DataFrame containing the movies data.
     """
     if file_type == 'csv':
         data = load_movies_data_csv(file_path)
@@ -177,10 +175,28 @@ def preprocess_movies_data(file_path: Path, file_type: str) -> pd.DataFrame:
     if data.empty:
         print("No data to preprocess.")
         return data
+    return data
 
-    cleaned_data = clean_dataset(data)
-    cleaned_data = process_movie_genres(cleaned_data, tag_column='genres')
-    return cleaned_data
+# Rating data pre-processing wrapper function
+def preprocess_rating_data(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Preprocesses the rating data by cleaning the dataset.
+    :param df: rating DataFrame to preprocess.
+    :return: df: Preprocessed rating DataFrame.
+    """
+    df = clean_dataset(df)
+    return df
+
+# Movies data pre-processing wrapper function
+def preprocess_movies_data(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Preprocesses the movies data by cleaning the dataset and processing movie genres.
+    :param df: movies DataFrame to preprocess.
+    :return: df: Preprocessed movies DataFrame.
+    """
+    df = clean_dataset(df)
+    df = process_movie_genres(df, tag_column='genres')
+    return df
 
 # General function to merge ratings and movies data
 def merge_datasets(ratings_df: pd.DataFrame, movies_df: pd.DataFrame) -> pd.DataFrame:
