@@ -100,23 +100,3 @@ def plot_model_comparison(results: dict) -> None:
         plt.show()
     except Exception as e:
         print(f"An error occurred while plotting model comparison: {e}")
-
-# Histogram of prediction errors (residuals)
-def plot_prediction_error(y_true: list, y_pred: list) -> None:
-    """
-    Visualizes the distribution of errors (residuals) for the model.
-    :param y_true: Actual ratings.
-    :param y_pred: Predicted ratings from the model.
-    :return: None (displays a histogram)
-    """
-    try:
-        errors = [true - pred for true, pred in zip(y_true, y_pred)]
-        plt.figure(figsize=(10, 6))
-        sns.histplot(errors, bins=30, kde=True, color='teal')
-        plt.axvline(x=0, color='red', linestyle='--')
-        plt.title('Distribution of Prediction Errors (Actual - Predicted)')
-        plt.xlabel('Error Value')
-        plt.ylabel('Frequency')
-        plt.show()
-    except Exception as e:
-        print(f"An error occurred while plotting prediction error: {e}")
