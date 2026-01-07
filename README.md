@@ -45,4 +45,4 @@ The project compares two popular collaborative filtering algorithms:
 *   **SVD (Singular Value Decomposition)**: A matrix factorization technique popularized by the Netflix Prize. It reduces the dimensionality of the user-item interaction matrix to capture latent factors.
 *   **KNNBaseline**: A basic collaborative filtering algorithm that considers nearest neighbors (user-based or item-based) while accounting for baseline biases (e.g., some users rate consistently higher).
 
-These users were used due to their effectiveness in recommendation systems with minimal preprocessing and their availability in the `scikit-surprise` library.
+These models were used due to their effectiveness in recommendation systems with minimal preprocessing and their availability in the `scikit-surprise` library.
