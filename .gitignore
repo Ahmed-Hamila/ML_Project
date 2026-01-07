@@ -2,3 +2,5 @@
 __pycache__
 .git
 .idea
+data/prepared-1m
+data/prepared-100k
