@@ -1,3 +1,38 @@
+##    Project Overview
+This project explores collaborative filtering techniques for building a movie recommendation system using the MovieLens dataset.
+It focuses on two popular algorithms: Singular Value Decomposition (SVD) and K-Nearest Neighbors Baseline (KNNBaseline). 
+
+The dataset used is the MovieLens dataset, available in multiple sizes. This project specifically utilizes the 100k and 1M ratings datasets to evaluate model performance across different data scales.
+This dataset contains user ratings for movies, along with metadata such as movie titles and genres.
+
+The project is structured into four main stages: Exploratory Data Analysis (EDA), Data Preparation, Model Training, and Evaluation & Visualization.
+The main purpose is to compare the performance of these algorithms on two different dataset sizes (100k and 1M ratings) and analyze their effectiveness in predicting user preferences as well as their performance.
+
+## 📈 Project Structure
+
+This project is organized as follows:
+
+### 1. Data folder
+This contains the datasets used in the project.
+
+### 2. Notebooks folder
+This contains Jupyter Notebooks for each stage of the project:
+*   `01_EDA.ipynb`: Exploratory Data Analysis.
+*   `02_data_preparation.ipynb`: Data Preparation.
+*   `03_modeling.ipynb`: Model Training.
+*   `04_evaluation.ipynb`: Evaluation & Visualization.
+
+### 3. Utils folder
+This contains utility scripts for various tasks:
+*   `preprocessing.py`: Functions for loading and preprocessing data.
+*  `evaluation.py`: Functions for calculating performance metrics.
+*   `visualization.py`: Functions for generating plots and visualizations.
+
+### 4. Models folder 
+This folder is created to store trained model files for reuse.
+This allows us to avoid retraining models every time we want to evaluate or visualize results as well as saving computational resources.
+
+
 ## 🚀 Setup & Installation
 
 1.  **Clone the repository** (if applicable) or navigate to the project root.
@@ -37,6 +72,8 @@ The project is divided into four sequential stages, managed via Jupyter Notebook
 *   Computes performance metrics (e.g., RMSE, MAE) using `utils/evaluation.py`.
 *   Generates comparison plots using `utils/visualization.py`.
 *   Manages memory efficiently by garbage collecting large objects after use.
+
+These notebooks are supported by utility scripts in the `utils/` directory for preprocessing, evaluation, and visualization tasks.
 
 ## 🧠 Models Used
 
