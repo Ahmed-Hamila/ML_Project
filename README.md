@@ -37,7 +37,7 @@ This allows us to avoid retraining models every time we want to evaluate or visu
 
 1.  **Clone the repository** (if applicable) or navigate to the project root.
 2.  **Install dependencies**:
-    Ensure you have Python 3.11+ installed. Install the required libraries using pip:
+    Ensure you have Python 3.11 installed. It will not run on 3.14. Install the required libraries using pip:
     ```bash
     pip install -r requirements.txt
     ```
